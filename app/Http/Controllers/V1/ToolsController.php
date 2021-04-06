@@ -156,6 +156,7 @@ class ToolsController extends Controller
     {
         try {
             $tool = Tool::find($request->id);
+            if(!$tool) return response()->json(['error'=>'Resource not found.'], 404);
             $tool->fill($request->all())->save();
             $tool->tags()->delete();
             $tool->tags()->createMany(
@@ -195,9 +196,10 @@ class ToolsController extends Controller
     {
         try {
             $tool = Tool::find($request->id);
+            if(!$tool) return response()->json(['error'=>'Resource not found.'], 404);
             $tool->delete();
 
-            return response()->json([], 204);
+            return response('', 204);
         } catch(\Exception $e){
             return response()->json([
                 'error' =>  $e->getMessage()

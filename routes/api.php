@@ -22,8 +22,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::namespace('V1')->prefix('v1')->group(function(){
     Route::prefix('tools')->group(function(){
         Route::get('/', [ToolsController::class, 'list']);
-        Route::get('/{id}', [ToolsController::class, 'get']);
         Route::post('/', [ToolsController::class, 'add']);
+        Route::get('/{id}', [ToolsController::class, 'get']);
         Route::put('/{id}', [ToolsController::class, 'edit']);
         Route::delete('/{id}', [ToolsController::class, 'delete']);
     });
