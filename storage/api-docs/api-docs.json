@@ -1,0 +1,186 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "VUTTR (Very Useful Tools to Remember)",
+        "description": "Vuttr OpenApi documentation",
+        "contact": {
+            "email": "marcelo.motta@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/tools": {
+            "get": {
+                "tags": [
+                    "Tools"
+                ],
+                "summary": "Returns a list of tools",
+                "description": "Returns a object of tool",
+                "parameters": [
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Page size",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page to show",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "tag",
+                        "in": "query",
+                        "description": "Filter by tag",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list with tool"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Tools"
+                ],
+                "summary": "Create a tool",
+                "description": "Returns a object of tool",
+                "operationId": "App\\Http\\Controllers\\V1\\ToolsController::add",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Tool"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created a tool"
+                    }
+                }
+            }
+        },
+        "/api/v1/tools/{id}": {
+            "get": {
+                "tags": [
+                    "Tools"
+                ],
+                "summary": "Returns a especified tool",
+                "description": "Returns a object of tool",
+                "operationId": "App\\Http\\Controllers\\V1\\ToolsController::get",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Tool id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A object with tool"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Tools"
+                ],
+                "summary": "Edit a tool",
+                "description": "Returns a object of tool",
+                "operationId": "App\\Http\\Controllers\\V1\\ToolsController::edit",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Tool id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Tool"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated a tool"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Tools"
+                ],
+                "summary": "Delete a tool",
+                "description": "Returns no content",
+                "operationId": "App\\Http\\Controllers\\V1\\ToolsController::delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Tool id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Tool": {
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "link": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
